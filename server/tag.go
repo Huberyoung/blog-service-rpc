@@ -2,6 +2,7 @@ package server
 
 import (
 	"blog_service_grpc/pkg/bapi"
+	"blog_service_grpc/pkg/errcode"
 	"blog_service_grpc/proto/pb"
 	"context"
 	"encoding/json"
@@ -19,7 +20,7 @@ func (t *TagServer) GetTagList(ctx context.Context, r *pb.GetTagListRequest) (*p
 	api := bapi.NewApi("http://127.0.0.1:8080")
 	body, err := api.GetTagList(ctx, r.GetName())
 	if err != nil {
-		return nil, err
+		return nil, errcode.TogRPCError(errcode.ErrorGetTagListFail)
 	}
 
 	tagListReply := pb.GetTagListReply{}

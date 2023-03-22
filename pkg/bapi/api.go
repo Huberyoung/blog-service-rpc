@@ -71,6 +71,5 @@ func (a *Api) GetTagList(ctx context.Context, name string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return body, nil
 }
