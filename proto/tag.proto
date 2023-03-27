@@ -1,9 +1,14 @@
 syntax = "proto3";
-option go_package = "./proto/pb;pb";
+option go_package = "./pb;pb";
 import "proto/common.proto";
+import "google/api/annotations.proto";
 
 service TagService {
-  rpc GetTagList (GetTagListRequest) returns (GetTagListReply) {}
+  rpc GetTagList (GetTagListRequest) returns (GetTagListReply) {
+    option (google.api.http) = {
+      get: "/api/v1/tags"
+    };
+  }
 }
 
 message GetTagListRequest {
